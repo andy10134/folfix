@@ -31,8 +31,8 @@ export default function MovieSelection() {
   }, []);
   return (
     <section className="flex flex-col items-start gap-12 w-full">
-      <span className="text-4xl font-bold text-white">En cartelera</span>
-      <div className="flex justify-start gap-8 pb-5 w-full overflow-x-auto min-h-min">
+      <span className="text-4xl font-bold text-white px-3">En cartelera</span>
+      <div className="flex justify-start gap-8 pb-5 w-full overflow-x-auto min-h-min px-3">
         {Listing.results.map((movie: Movie, i) => {
           return <MovieCard key={movie.id} movie={movie}></MovieCard>
         })}

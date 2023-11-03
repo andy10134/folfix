@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -13,6 +13,8 @@ interface ModalViewProps {
 }
 
 export const ModalMovie: React.FC<ModalViewProps>  = ({handleClose, open, movie}) =>{
+
+    const [isLoading, setIsLoading] = useState<Boolean>(true);
 
     const style = {
         position: 'absolute' as 'absolute',
@@ -43,9 +45,11 @@ export const ModalMovie: React.FC<ModalViewProps>  = ({handleClose, open, movie}
       <Image
         src={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
         alt="tittle"
-        width={300}
-        height={489}
-        className='rounded-md'
+        width={320}
+        height={384}
+        loading='lazy'
+        decoding='async'
+        className='rounded-md bg-gray-400 w-60 xl:w-80 h-96'
       />
       <Typography id="modal-modal-description" className='flex flex-col gap-3'>
         <span className='font-bold text-2xl'>{movie.title}</span>
