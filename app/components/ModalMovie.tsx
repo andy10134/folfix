@@ -43,7 +43,7 @@ export const ModalMovie: React.FC<ModalViewProps>  = ({handleClose, open, movie}
         </Box>
       <Box className="flex justify-center items-center md:items-start gap-3 flex-col md:flex-row ">
       <Image
-        src={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
+        src={process.env.NEXT_PUBLIC_POSTER_PATH + movie.poster_path}
         alt="tittle"
         width={320}
         height={384}
