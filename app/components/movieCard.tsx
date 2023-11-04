@@ -3,35 +3,27 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { useState, useEffect } from "react";
 import './movieCard.css';
-import { ModalMovie } from './ModalMovie';
 import { Movie } from '@/interfaces/movie';
 
 interface MovieCardViewProps {
+  handleOpen: (movie: Movie) => void; 
   movie : Movie;
 }
-export const MovieCard : React.FC<MovieCardViewProps> = ({movie}) => {
-  
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  }
-
-  const handleClose = () => {
-    setOpen(false);
+export const MovieCard : React.FC<MovieCardViewProps> = ({movie, handleOpen}) => {
+  const handleOpenModal = () => {
+    handleOpen(movie);
   }
 
   return (
     <>
-      <Card sx={{ maxWidth: 328 }} className='min-w-[250px] text-white' onClick={handleOpen}>
-        <CardActionArea className='w-80'>
+      <Card sx={{ maxWidth: 328 }} className='min-w-[250px] max-w-[250px] text-white' onClick={handleOpenModal}>
+        <CardActionArea className='min-w-[250px] max-w-[250px] '>
           <CardMedia
-            className='h-80 w-48'
+            className='h-80 w-48 min-w-[250px] max-w-[250px]'
             component="img"
             width={48}
-            image={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
+            image={process.env.NEXT_PUBLIC_POSTER_PATH + movie.poster_path}
             alt="poster"
             />
           <CardContent>
@@ -41,7 +33,6 @@ export const MovieCard : React.FC<MovieCardViewProps> = ({movie}) => {
           </CardContent>
         </CardActionArea>
       </Card>
-      <ModalMovie open={open} handleClose={handleClose} movie={movie}></ModalMovie>
     </>
   );
 }
